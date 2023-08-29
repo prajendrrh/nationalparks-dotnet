@@ -17,7 +17,15 @@ namespace NationalParks.Services
 
         public ParkService(INationalparksDatabaseSettings settings)
         {
-            Console.WriteLine($"Connecting with {settings.ConnectionString} to database {settings.DatabaseName}");
+            var mongoDbServerHost = Environment.GetEnvironmentVariable("MONGODB_SERVER_HOST") ?? "127.0.0.1";
+            var mongoDbServerPort = Environment.GetEnvironmentVariable("MONGODB_SERVER_PORT") ?? "27017";
+            var mongoDbDatabase = Environment.GetEnvironmentVariable("MONGODB_DATABASE") ?? "mongodb";
+            var mongoDbUser = Environment.GetEnvironmentVariable("MONGODB_USER") ?? "mongodb";
+            var mongoDbPassword = Environment.GetEnvironmentVariable("MONGODB_PASSWORD") ?? "mongodb";
+
+            var connectionString = $"mongodb://{mongoDbUser}:{mongoDbPassword}@{mongoDbServerHost}:{mongoDbServerPort}/{mongoDbDatabase}";
+
+            Console.WriteLine($"Connecting with {connectionString} to database {mongoDbDatabase}");
 
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
