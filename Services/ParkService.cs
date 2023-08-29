@@ -17,6 +17,8 @@ namespace NationalParks.Services
 
         public ParkService(INationalparksDatabaseSettings settings)
         {
+            Console.WriteLine($"Connecting with {settings.ConnectionString} to database {settings.DatabaseName}");
+
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
