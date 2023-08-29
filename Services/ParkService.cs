@@ -27,8 +27,8 @@ namespace NationalParks.Services
 
             Console.WriteLine($"Connecting with {connectionString} to database {mongoDbDatabase}");
 
-            var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DatabaseName);
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase(mongoDbDatabase);
 
             _parks = database.GetCollection<Park>(settings.ParksCollectionName);
         }
