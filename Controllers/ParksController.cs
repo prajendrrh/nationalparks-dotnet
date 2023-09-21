@@ -42,7 +42,7 @@ namespace NationalParks.Controllers
             var jsonData = new
             {
                 id = "nationalparks",
-                displayName = "National Parks (C#)",
+                displayName = "Awesome National Parks (C#)",
                 center = new
                         {
                             latitude = 47.039304,
